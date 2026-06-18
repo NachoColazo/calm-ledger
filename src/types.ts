@@ -1,14 +1,19 @@
-export type ExpenseCategory =
-  | "housing"
-  | "food"
-  | "transportation"
-  | "health"
-  | "debt"
-  | "subscriptions"
-  | "personal"
-  | "other";
+export const expenseCategories = [
+  "housing",
+  "food",
+  "transportation",
+  "health",
+  "debt",
+  "subscriptions",
+  "personal",
+  "other",
+] as const;
 
-export type ExpenseType = "necessary" | "personal";
+export const expenseTypes = ["necessary", "personal"] as const;
+
+export type ExpenseCategory = (typeof expenseCategories)[number];
+
+export type ExpenseType = (typeof expenseTypes)[number];
 
 export interface Expense {
   id: string;

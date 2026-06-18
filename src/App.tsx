@@ -1,6 +1,12 @@
-import { useState } from "react";
+import { useState, type SyntheticEvent } from "react";
 import "./App.css";
-import type { FinanceData } from "./types";
+import { expenseCategories, expenseTypes } from "./types";
+import type {
+  Expense,
+  ExpenseCategory,
+  ExpenseType,
+  FinanceData,
+} from "./types";
 
 const initialData: FinanceData = {
   monthlyIncome: 3000,
@@ -35,6 +41,12 @@ const initialData: FinanceData = {
 
 function App() {
   const [financeData, setFinanceData] = useState<FinanceData>(initialData);
+
+  const [expenseName, setExpenseName] = useState("");
+  const [expenseAmount, setExpenseAmount] = useState("");
+  const [expenseCategory, setExpenseCategory] =
+    useState<ExpenseCategory>("other");
+  const [expenseType, setExpenseType] = useState<ExpenseType>("necessary");
 
   const totalExpenses = financeData.expenses.reduce((total, expense) => {
     return total + expense.amount;
@@ -78,6 +90,46 @@ function App() {
         ...financeData.goal,
         calmGoal: Number(value),
       },
+    });
+  }
+
+  function handleAddExpense(event: SyntheticEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const trimmedExpenseName = expenseName.trim();
+    const numericAmount = Number(expenseAmount);
+
+    if (trimmedExpenseName === "" || numericAmount <= 0) {
+      return;
+    }
+
+    const newExpense: Expense = {
+      id: crypto.randomUUID(),
+      name: trimmedExpenseName,
+      amount: numericAmount,
+      category: expenseCategory,
+      type: expenseType,
+    };
+
+    setFinanceData({
+      ...financeData,
+      expenses: [...financeData.expenses, newExpense],
+    });
+
+    setExpenseName("");
+    setExpenseAmount("");
+    setExpenseCategory("other");
+    setExpenseType("necessary");
+  }
+
+  function handleDeleteExpense(expenseId: string) {
+    const updatedExpenses = financeData.expenses.filter((expense) => {
+      return expense.id !== expenseId;
+    });
+
+    setFinanceData({
+      ...financeData,
+      expenses: updatedExpenses,
     });
   }
 
@@ -191,22 +243,106 @@ function App() {
       </section>
 
       <section className="expense-section">
-        <h2>Sample Monthly Expenses</h2>
+        <article className="form-card">
+          <h2>Add Monthly Expense</h2>
+          <p>
+            Add your recurring monthly expenses. Calm Ledger will use them to
+            calculate your balance and savings potential.
+          </p>
 
-        <div className="expense-list">
-          {financeData.expenses.map((expense) => (
-            <article className="expense-card" key={expense.id}>
-              <div>
-                <h3>{expense.name}</h3>
-                <p>
-                  {expense.category} · {expense.type}
-                </p>
-              </div>
+          <form className="expense-form-grid" onSubmit={handleAddExpense}>
+            <label>
+              Expense Name
+              <input
+                type="text"
+                placeholder="Car insurance"
+                value={expenseName}
+                onChange={(event) => setExpenseName(event.target.value)}
+              />
+            </label>
 
-              <strong>${expense.amount}</strong>
-            </article>
-          ))}
-        </div>
+            <label>
+              Amount
+              <input
+                type="number"
+                min="0"
+                placeholder="180"
+                value={expenseAmount}
+                onChange={(event) => setExpenseAmount(event.target.value)}
+              />
+            </label>
+
+            <label>
+              Category
+              <select
+                value={expenseCategory}
+                onChange={(event) =>
+                  setExpenseCategory(event.target.value as ExpenseCategory)
+                }
+              >
+                {expenseCategories.map((category) => (
+                  <option value={category} key={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label>
+              Type
+              <select
+                value={expenseType}
+                onChange={(event) =>
+                  setExpenseType(event.target.value as ExpenseType)
+                }
+              >
+                {expenseTypes.map((type) => (
+                  <option value={type} key={type}>
+                    {type}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <button className="primary-button" type="submit">
+              Add Expense
+            </button>
+          </form>
+        </article>
+      </section>
+
+      <section className="expense-section">
+        <h2>Monthly Expenses</h2>
+
+        {financeData.expenses.length === 0 ? (
+          <p className="empty-state">
+            No expenses yet. Add your first monthly expense above.
+          </p>
+        ) : (
+          <div className="expense-list">
+            {financeData.expenses.map((expense) => (
+              <article className="expense-card" key={expense.id}>
+                <div>
+                  <h3>{expense.name}</h3>
+                  <p>
+                    {expense.category} · {expense.type}
+                  </p>
+                </div>
+
+                <div className="expense-actions">
+                  <strong>${expense.amount}</strong>
+                  <button
+                    className="delete-button"
+                    type="button"
+                    onClick={() => handleDeleteExpense(expense.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     </main>
   );

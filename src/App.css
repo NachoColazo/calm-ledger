@@ -31,70 +31,6 @@ h1 {
   color: #6f604d;
 }
 
-.summary-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
-  margin-bottom: 40px;
-}
-
-.summary-card,
-.expense-card {
-  background: #fffaf0;
-  border: 1px solid #eadcc4;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
-}
-
-.summary-card {
-  padding: 20px;
-}
-
-.summary-card span {
-  display: block;
-  margin-bottom: 10px;
-  color: #7b6a55;
-  font-size: 0.9rem;
-}
-
-.summary-card strong {
-  font-size: 1.6rem;
-  color: #3f3222;
-}
-
-.expense-section h2 {
-  color: #3f3222;
-  margin-bottom: 16px;
-}
-
-.expense-list {
-  display: grid;
-  gap: 14px;
-}
-
-.expense-card {
-  padding: 18px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.expense-card h3 {
-  margin: 0 0 6px;
-  color: #3f3222;
-}
-
-.expense-card p {
-  margin: 0;
-  color: #7b6a55;
-  text-transform: capitalize;
-}
-
-.expense-card strong {
-  color: #3f3222;
-  font-size: 1.2rem;
-}
-
 .input-section {
   margin-bottom: 28px;
 }
@@ -148,6 +84,159 @@ h1 {
   box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.16);
 }
 
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.summary-card,
+.expense-card {
+  background: #fffaf0;
+  border: 1px solid #eadcc4;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
+}
+
+.summary-card {
+  padding: 20px;
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: #7b6a55;
+  font-size: 0.9rem;
+}
+
+.summary-card strong {
+  font-size: 1.6rem;
+  color: #3f3222;
+}
+
+.expense-section {
+  margin-bottom: 32px;
+}
+
+.expense-section h2 {
+  color: #3f3222;
+  margin-bottom: 16px;
+}
+
+.expense-form-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr auto;
+  gap: 16px;
+  align-items: end;
+}
+
+.expense-form-grid label {
+  display: grid;
+  gap: 8px;
+  color: #5c4a35;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.expense-form-grid input,
+.expense-form-grid select {
+  width: 100%;
+  border: 1px solid #d8c7aa;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fffdf8;
+  color: #3f3222;
+  outline: none;
+}
+
+.expense-form-grid input:focus,
+.expense-form-grid select:focus {
+  border-color: #a8844f;
+  box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.16);
+}
+
+.primary-button {
+  border: none;
+  border-radius: 14px;
+  padding: 13px 18px;
+  background: #6f4e2f;
+  color: #fffaf0;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.primary-button:hover {
+  background: #5c3f25;
+}
+
+.expense-list {
+  display: grid;
+  gap: 14px;
+}
+
+.expense-card {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-card h3 {
+  margin: 0 0 6px;
+  color: #3f3222;
+}
+
+.expense-card p {
+  margin: 0;
+  color: #7b6a55;
+  text-transform: capitalize;
+}
+
+.expense-card strong {
+  color: #3f3222;
+  font-size: 1.2rem;
+}
+
+.expense-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.delete-button {
+  border: 1px solid #d8c7aa;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fffdf8;
+  color: #6f4e2f;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #f4e5cb;
+}
+
+.empty-state {
+  background: #fffaf0;
+  border: 1px dashed #d8c7aa;
+  border-radius: 18px;
+  padding: 20px;
+  color: #7b6a55;
+}
+
+@media (max-width: 900px) {
+  .expense-form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+}
+
 @media (max-width: 800px) {
   .summary-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -156,6 +245,12 @@ h1 {
 
 @media (max-width: 700px) {
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .expense-form-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -170,7 +265,13 @@ h1 {
   }
 
   .expense-card {
+    flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+  }
+
+  .expense-actions {
+    width: 100%;
+    justify-content: space-between;
   }
 }
