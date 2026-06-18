@@ -227,6 +227,48 @@ h1 {
   color: #7b6a55;
 }
 
+.recommendation-box {
+  margin-bottom: 32px;
+  border-radius: 22px;
+  padding: 24px;
+  border: 1px solid #eadcc4;
+  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
+}
+
+.recommendation-box h2 {
+  margin: 0 0 10px;
+  color: #3f3222;
+}
+
+.recommendation-box p {
+  margin: 0;
+  color: #6f604d;
+  line-height: 1.6;
+}
+
+.recommendation-label {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+
+.recommendation-positive {
+  background: #f7f1dc;
+  border-color: #d8c794;
+}
+
+.recommendation-caution {
+  background: #fff4df;
+  border-color: #e3c48e;
+}
+
+.recommendation-warning {
+  background: #fff0e8;
+  border-color: #d8a58b;
+}
+
 @media (max-width: 900px) {
   .expense-form-grid {
     grid-template-columns: repeat(2, 1fr);

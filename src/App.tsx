@@ -8,6 +8,7 @@ import type {
   FinanceData,
 } from "./types";
 import { calculateFinanceSummary } from "./utils/calculations";
+import { getRecommendation } from "./utils/recommendations";
 
 const initialData: FinanceData = {
   monthlyIncome: 3000,
@@ -50,6 +51,7 @@ function App() {
   const [expenseType, setExpenseType] = useState<ExpenseType>("necessary");
 
   const summary = calculateFinanceSummary(financeData);
+  const recommendation = getRecommendation(summary);
 
   function handleMonthlyIncomeChange(value: string) {
     setFinanceData({
@@ -247,6 +249,16 @@ function App() {
           <span>Savings Rate</span>
           <strong>{(summary.savingsRate * 100).toFixed(0)}%</strong>
         </article>
+      </section>
+
+      <section
+        className={`recommendation-box recommendation-${recommendation.level}`}
+      >
+        <div>
+          <p className="recommendation-label">Calm Recommendation</p>
+          <h2>{recommendation.title}</h2>
+          <p>{recommendation.message}</p>
+        </div>
       </section>
 
       <section className="expense-section">
