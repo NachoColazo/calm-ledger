@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import type { FinanceData } from "./types";
 
@@ -33,11 +34,52 @@ const initialData: FinanceData = {
 };
 
 function App() {
-  const totalExpenses = initialData.expenses.reduce((total, expense) => {
+  const [financeData, setFinanceData] = useState<FinanceData>(initialData);
+
+  const totalExpenses = financeData.expenses.reduce((total, expense) => {
     return total + expense.amount;
   }, 0);
 
-  const monthlyBalance = initialData.monthlyIncome - totalExpenses;
+  const monthlyBalance = financeData.monthlyIncome - totalExpenses;
+
+  const monthlySavingsPotential = Math.max(monthlyBalance, 0);
+
+  const remainingToGoal = Math.max(
+    financeData.goal.calmGoal - financeData.goal.currentSavings,
+    0,
+  );
+
+  const monthsToGoal =
+    monthlySavingsPotential > 0
+      ? Math.ceil(remainingToGoal / monthlySavingsPotential)
+      : null;
+
+  function handleMonthlyIncomeChange(value: string) {
+    setFinanceData({
+      ...financeData,
+      monthlyIncome: Number(value),
+    });
+  }
+
+  function handleCurrentSavingsChange(value: string) {
+    setFinanceData({
+      ...financeData,
+      goal: {
+        ...financeData.goal,
+        currentSavings: Number(value),
+      },
+    });
+  }
+
+  function handleCalmGoalChange(value: string) {
+    setFinanceData({
+      ...financeData,
+      goal: {
+        ...financeData.goal,
+        calmGoal: Number(value),
+      },
+    });
+  }
 
   return (
     <main className="app">
@@ -50,10 +92,71 @@ function App() {
         </p>
       </section>
 
+      <section className="input-section">
+        <article className="form-card">
+          <h2>Your Monthly Snapshot</h2>
+          <p>
+            Start with your real monthly numbers. These values help Calm Ledger
+            estimate how close you are to your financial peace goal.
+          </p>
+
+          <div className="form-grid">
+            <label>
+              Monthly Income
+              <input
+                type="number"
+                min="0"
+                placeholder="3000"
+                value={
+                  financeData.monthlyIncome === 0
+                    ? ""
+                    : financeData.monthlyIncome
+                }
+                onChange={(event) =>
+                  handleMonthlyIncomeChange(event.target.value)
+                }
+              />
+            </label>
+
+            <label>
+              Current Savings
+              <input
+                type="number"
+                min="0"
+                placeholder="1200"
+                value={
+                  financeData.goal.currentSavings === 0
+                    ? ""
+                    : financeData.goal.currentSavings
+                }
+                onChange={(event) =>
+                  handleCurrentSavingsChange(event.target.value)
+                }
+              />
+            </label>
+
+            <label>
+              Calm Goal
+              <input
+                type="number"
+                min="0"
+                placeholder="6000"
+                value={
+                  financeData.goal.calmGoal === 0
+                    ? ""
+                    : financeData.goal.calmGoal
+                }
+                onChange={(event) => handleCalmGoalChange(event.target.value)}
+              />
+            </label>
+          </div>
+        </article>
+      </section>
+
       <section className="summary-grid">
         <article className="summary-card">
           <span>Monthly Income</span>
-          <strong>${initialData.monthlyIncome}</strong>
+          <strong>${financeData.monthlyIncome}</strong>
         </article>
 
         <article className="summary-card">
@@ -67,8 +170,23 @@ function App() {
         </article>
 
         <article className="summary-card">
-          <span>Calm Goal</span>
-          <strong>${initialData.goal.calmGoal}</strong>
+          <span>Possible Monthly Savings</span>
+          <strong>${monthlySavingsPotential}</strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Current Savings</span>
+          <strong>${financeData.goal.currentSavings}</strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Remaining To Goal</span>
+          <strong>${remainingToGoal}</strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Months To Goal</span>
+          <strong>{monthsToGoal === null ? "—" : monthsToGoal}</strong>
         </article>
       </section>
 
@@ -76,7 +194,7 @@ function App() {
         <h2>Sample Monthly Expenses</h2>
 
         <div className="expense-list">
-          {initialData.expenses.map((expense) => (
+          {financeData.expenses.map((expense) => (
             <article className="expense-card" key={expense.id}>
               <div>
                 <h3>{expense.name}</h3>

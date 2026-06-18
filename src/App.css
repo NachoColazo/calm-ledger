@@ -33,7 +33,7 @@ h1 {
 
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 16px;
   margin-bottom: 40px;
 }
@@ -95,9 +95,68 @@ h1 {
   font-size: 1.2rem;
 }
 
+.input-section {
+  margin-bottom: 28px;
+}
+
+.form-card {
+  background: #fffaf0;
+  border: 1px solid #eadcc4;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
+}
+
+.form-card h2 {
+  margin: 0 0 8px;
+  color: #3f3222;
+}
+
+.form-card p {
+  margin: 0 0 22px;
+  color: #7b6a55;
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 8px;
+  color: #5c4a35;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.form-grid input {
+  width: 100%;
+  border: 1px solid #d8c7aa;
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: #fffdf8;
+  color: #3f3222;
+  outline: none;
+}
+
+.form-grid input:focus {
+  border-color: #a8844f;
+  box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.16);
+}
+
 @media (max-width: 800px) {
   .summary-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 }
 
