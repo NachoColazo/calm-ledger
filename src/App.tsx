@@ -1,4 +1,4 @@
-import { useState, type SyntheticEvent } from "react";
+import { useEffect, useState, type SyntheticEvent } from "react";
 import "./App.css";
 import { expenseCategories, expenseTypes } from "./types";
 import type {
@@ -9,6 +9,7 @@ import type {
 } from "./types";
 import { calculateFinanceSummary } from "./utils/calculations";
 import { getRecommendation } from "./utils/recommendations";
+import { loadFinanceData, saveFinanceData } from "./utils/storage";
 
 const initialData: FinanceData = {
   monthlyIncome: 3000,
@@ -42,13 +43,19 @@ const initialData: FinanceData = {
 };
 
 function App() {
-  const [financeData, setFinanceData] = useState<FinanceData>(initialData);
+  const [financeData, setFinanceData] = useState<FinanceData>(() => {
+    return loadFinanceData() ?? initialData;
+  });
 
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [expenseCategory, setExpenseCategory] =
     useState<ExpenseCategory>("other");
   const [expenseType, setExpenseType] = useState<ExpenseType>("necessary");
+
+  useEffect(() => {
+    saveFinanceData(financeData);
+  }, [financeData]);
 
   const summary = calculateFinanceSummary(financeData);
   const recommendation = getRecommendation(summary);
