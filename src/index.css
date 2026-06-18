@@ -1,0 +1,24 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #3f3222;
+  background: #f5ecd9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(255, 250, 240, 0.6), rgba(255, 250, 240, 0.6)), #f5ecd9;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

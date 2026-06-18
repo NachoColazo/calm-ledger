@@ -1,0 +1,117 @@
+.app {
+  min-height: 100vh;
+  padding: 48px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.hero {
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8a6f47;
+  font-weight: 700;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  color: #3f3222;
+}
+
+.hero-text {
+  max-width: 620px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #6f604d;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.summary-card,
+.expense-card {
+  background: #fffaf0;
+  border: 1px solid #eadcc4;
+  border-radius: 18px;
+  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
+}
+
+.summary-card {
+  padding: 20px;
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: #7b6a55;
+  font-size: 0.9rem;
+}
+
+.summary-card strong {
+  font-size: 1.6rem;
+  color: #3f3222;
+}
+
+.expense-section h2 {
+  color: #3f3222;
+  margin-bottom: 16px;
+}
+
+.expense-list {
+  display: grid;
+  gap: 14px;
+}
+
+.expense-card {
+  padding: 18px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.expense-card h3 {
+  margin: 0 0 6px;
+  color: #3f3222;
+}
+
+.expense-card p {
+  margin: 0;
+  color: #7b6a55;
+  text-transform: capitalize;
+}
+
+.expense-card strong {
+  color: #3f3222;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 800px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .app {
+    padding: 32px 16px;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expense-card {
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
