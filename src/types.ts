@@ -33,3 +33,16 @@ export interface FinanceData {
   goal: FinancialGoal;
   expenses: Expense[];
 }
+
+export interface FinanceSummary {
+  totalIncome: number;
+  totalExpenses: number;
+  necessaryExpenses: number;
+  personalExpenses: number;
+  monthlyBalance: number;
+  monthlySavingsPotential: number;
+  remainingToGoal: number;
+  monthsToGoal: number | null;
+  expenseRatio: number;
+  savingsRate: number;
+}

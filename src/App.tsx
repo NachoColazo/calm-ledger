@@ -7,6 +7,7 @@ import type {
   ExpenseType,
   FinanceData,
 } from "./types";
+import { calculateFinanceSummary } from "./utils/calculations";
 
 const initialData: FinanceData = {
   monthlyIncome: 3000,
@@ -48,23 +49,7 @@ function App() {
     useState<ExpenseCategory>("other");
   const [expenseType, setExpenseType] = useState<ExpenseType>("necessary");
 
-  const totalExpenses = financeData.expenses.reduce((total, expense) => {
-    return total + expense.amount;
-  }, 0);
-
-  const monthlyBalance = financeData.monthlyIncome - totalExpenses;
-
-  const monthlySavingsPotential = Math.max(monthlyBalance, 0);
-
-  const remainingToGoal = Math.max(
-    financeData.goal.calmGoal - financeData.goal.currentSavings,
-    0,
-  );
-
-  const monthsToGoal =
-    monthlySavingsPotential > 0
-      ? Math.ceil(remainingToGoal / monthlySavingsPotential)
-      : null;
+  const summary = calculateFinanceSummary(financeData);
 
   function handleMonthlyIncomeChange(value: string) {
     setFinanceData({
@@ -208,22 +193,32 @@ function App() {
       <section className="summary-grid">
         <article className="summary-card">
           <span>Monthly Income</span>
-          <strong>${financeData.monthlyIncome}</strong>
+          <strong>${summary.totalIncome}</strong>
         </article>
 
         <article className="summary-card">
           <span>Total Expenses</span>
-          <strong>${totalExpenses}</strong>
+          <strong>${summary.totalExpenses}</strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Necessary Expenses</span>
+          <strong>${summary.necessaryExpenses}</strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Personal Expenses</span>
+          <strong>${summary.personalExpenses}</strong>
         </article>
 
         <article className="summary-card">
           <span>Monthly Balance</span>
-          <strong>${monthlyBalance}</strong>
+          <strong>${summary.monthlyBalance}</strong>
         </article>
 
         <article className="summary-card">
           <span>Possible Monthly Savings</span>
-          <strong>${monthlySavingsPotential}</strong>
+          <strong>${summary.monthlySavingsPotential}</strong>
         </article>
 
         <article className="summary-card">
@@ -233,12 +228,24 @@ function App() {
 
         <article className="summary-card">
           <span>Remaining To Goal</span>
-          <strong>${remainingToGoal}</strong>
+          <strong>${summary.remainingToGoal}</strong>
         </article>
 
         <article className="summary-card">
           <span>Months To Goal</span>
-          <strong>{monthsToGoal === null ? "—" : monthsToGoal}</strong>
+          <strong>
+            {summary.monthsToGoal === null ? "—" : summary.monthsToGoal}
+          </strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Expenses / Income</span>
+          <strong>{(summary.expenseRatio * 100).toFixed(0)}%</strong>
+        </article>
+
+        <article className="summary-card">
+          <span>Savings Rate</span>
+          <strong>{(summary.savingsRate * 100).toFixed(0)}%</strong>
         </article>
       </section>
 
