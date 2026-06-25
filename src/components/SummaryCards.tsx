@@ -5,7 +5,20 @@ interface SummaryCardsProps {
   currentSavings: number;
 }
 
+function formatGoalMonth(date: Date | null) {
+  if (date === null) {
+    return "—";
+  }
+
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+
 function SummaryCards({ summary, currentSavings }: SummaryCardsProps) {
+  const estimatedGoalMonth = formatGoalMonth(summary.estimatedGoalDate);
+
   return (
     <section className="summary-grid">
       <article className="summary-card">
@@ -53,6 +66,11 @@ function SummaryCards({ summary, currentSavings }: SummaryCardsProps) {
         <strong>
           {summary.monthsToGoal === null ? "—" : summary.monthsToGoal}
         </strong>
+      </article>
+
+      <article className="summary-card">
+        <span>Estimated Goal Month</span>
+        <strong>{estimatedGoalMonth}</strong>
       </article>
 
       <article className="summary-card">

@@ -43,6 +43,7 @@ export interface FinanceSummary {
   monthlySavingsPotential: number;
   remainingToGoal: number;
   monthsToGoal: number | null;
+  estimatedGoalDate: Date | null;
   expenseRatio: number;
   savingsRate: number;
 }

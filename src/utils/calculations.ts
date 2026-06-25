@@ -2,6 +2,7 @@ import type { FinanceData, FinanceSummary } from "../types";
 
 export function calculateFinanceSummary(
   financeData: FinanceData,
+  today = new Date(),
 ): FinanceSummary {
   const totalIncome = financeData.monthlyIncome;
 
@@ -41,6 +42,11 @@ export function calculateFinanceSummary(
         ? Math.ceil(remainingToGoal / monthlySavingsPotential)
         : null;
 
+  const estimatedGoalDate =
+    monthsToGoal === null
+      ? null
+      : new Date(today.getFullYear(), today.getMonth() + monthsToGoal, 1);
+
   const expenseRatio = totalIncome > 0 ? totalExpenses / totalIncome : 0;
 
   const savingsRate =
@@ -55,6 +61,7 @@ export function calculateFinanceSummary(
     monthlySavingsPotential,
     remainingToGoal,
     monthsToGoal,
+    estimatedGoalDate,
     expenseRatio,
     savingsRate,
   };
