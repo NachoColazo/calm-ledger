@@ -1,19 +1,13 @@
 import type { FinanceSummary } from "../types";
+import {
+  formatCurrency,
+  formatGoalMonth,
+  formatPercent,
+} from "../utils/formatters";
 
 interface SummaryCardsProps {
   summary: FinanceSummary;
   currentSavings: number;
-}
-
-function formatGoalMonth(date: Date | null) {
-  if (date === null) {
-    return "—";
-  }
-
-  return new Intl.DateTimeFormat("en-US", {
-    month: "long",
-    year: "numeric",
-  }).format(date);
 }
 
 function SummaryCards({ summary, currentSavings }: SummaryCardsProps) {
@@ -23,42 +17,42 @@ function SummaryCards({ summary, currentSavings }: SummaryCardsProps) {
     <section className="summary-grid">
       <article className="summary-card">
         <span>Monthly Income</span>
-        <strong>${summary.totalIncome}</strong>
+        <strong>{formatCurrency(summary.totalIncome)}</strong>
       </article>
 
       <article className="summary-card">
         <span>Total Expenses</span>
-        <strong>${summary.totalExpenses}</strong>
+        <strong>{formatCurrency(summary.totalExpenses)}</strong>
       </article>
 
       <article className="summary-card">
         <span>Necessary Expenses</span>
-        <strong>${summary.necessaryExpenses}</strong>
+        <strong>{formatCurrency(summary.necessaryExpenses)}</strong>
       </article>
 
       <article className="summary-card">
         <span>Personal Expenses</span>
-        <strong>${summary.personalExpenses}</strong>
+        <strong>{formatCurrency(summary.personalExpenses)}</strong>
       </article>
 
       <article className="summary-card">
-        <span>Monthly Balance</span>
-        <strong>${summary.monthlyBalance}</strong>
+        <span>Money Left After Expenses</span>
+        <strong>{formatCurrency(summary.monthlyBalance)}</strong>
       </article>
 
       <article className="summary-card">
-        <span>Possible Monthly Savings</span>
-        <strong>${summary.monthlySavingsPotential}</strong>
+        <span>Potential Monthly Savings</span>
+        <strong>{formatCurrency(summary.monthlySavingsPotential)}</strong>
       </article>
 
       <article className="summary-card">
         <span>Current Savings</span>
-        <strong>${currentSavings}</strong>
+        <strong>{formatCurrency(currentSavings)}</strong>
       </article>
 
       <article className="summary-card">
         <span>Remaining To Goal</span>
-        <strong>${summary.remainingToGoal}</strong>
+        <strong>{formatCurrency(summary.remainingToGoal)}</strong>
       </article>
 
       <article className="summary-card">
@@ -75,12 +69,12 @@ function SummaryCards({ summary, currentSavings }: SummaryCardsProps) {
 
       <article className="summary-card">
         <span>Expenses / Income</span>
-        <strong>{(summary.expenseRatio * 100).toFixed(0)}%</strong>
+        <strong>{formatPercent(summary.expenseRatio)}</strong>
       </article>
 
       <article className="summary-card">
-        <span>Savings Rate</span>
-        <strong>{(summary.savingsRate * 100).toFixed(0)}%</strong>
+        <span>Potential Savings Rate</span>
+        <strong>{formatPercent(summary.savingsRate)}</strong>
       </article>
     </section>
   );

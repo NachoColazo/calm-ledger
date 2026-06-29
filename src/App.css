@@ -71,6 +71,7 @@ h1 {
 
 .form-grid input {
   width: 100%;
+  min-width: 0;
   border: 1px solid #d8c7aa;
   border-radius: 14px;
   padding: 12px 14px;
@@ -111,8 +112,11 @@ h1 {
 }
 
 .summary-card strong {
-  font-size: 1.6rem;
+  display: block;
+  font-size: clamp(1.25rem, 3vw, 1.6rem);
+  line-height: 1.2;
   color: #3f3222;
+  overflow-wrap: anywhere;
 }
 
 .expense-section {
@@ -142,6 +146,7 @@ h1 {
 .expense-form-grid input,
 .expense-form-grid select {
   width: 100%;
+  min-width: 0;
   border: 1px solid #d8c7aa;
   border-radius: 14px;
   padding: 12px 14px;
@@ -154,6 +159,30 @@ h1 {
 .expense-form-grid select:focus {
   border-color: #a8844f;
   box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.16);
+}
+
+/* Remove default arrows from number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* Custom select arrow */
+.expense-form-grid select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236f4e2f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 12px;
 }
 
 .primary-button {
