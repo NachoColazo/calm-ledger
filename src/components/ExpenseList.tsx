@@ -1,19 +1,20 @@
+import type { TranslationContent } from "../translations";
 import type { Expense } from "../types";
+import { formatCurrency } from "../utils/formatters";
 
 interface ExpenseListProps {
   expenses: Expense[];
+  t: TranslationContent;
   onDeleteExpense: (expenseId: string) => void;
 }
 
-function ExpenseList({ expenses, onDeleteExpense }: ExpenseListProps) {
+function ExpenseList({ expenses, t, onDeleteExpense }: ExpenseListProps) {
   return (
     <section className="expense-section">
-      <h2>Monthly Expenses</h2>
+      <h2>{t.expenseList.title}</h2>
 
       {expenses.length === 0 ? (
-        <p className="empty-state">
-          No expenses yet. Add your first monthly expense above.
-        </p>
+        <p className="empty-state">{t.expenseList.emptyState}</p>
       ) : (
         <div className="expense-list">
           {expenses.map((expense) => (
@@ -21,18 +22,19 @@ function ExpenseList({ expenses, onDeleteExpense }: ExpenseListProps) {
               <div>
                 <h3>{expense.name}</h3>
                 <p>
-                  {expense.category} · {expense.type}
+                  {t.categoryLabels[expense.category]} ·{" "}
+                  {t.expenseTypeLabels[expense.type]}
                 </p>
               </div>
 
               <div className="expense-actions">
-                <strong>${expense.amount}</strong>
+                <strong>{formatCurrency(expense.amount)}</strong>
                 <button
                   className="delete-button"
                   type="button"
                   onClick={() => onDeleteExpense(expense.id)}
                 >
-                  Delete
+                  {t.expenseList.delete}
                 </button>
               </div>
             </article>

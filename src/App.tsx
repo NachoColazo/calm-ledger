@@ -6,10 +6,16 @@ import SummaryCards from "./components/SummaryCards";
 import RecommendationBox from "./components/RecommendationBox";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
+import { translations, type Language } from "./translations";
 import type { Expense, FinanceData } from "./types";
 import { calculateFinanceSummary } from "./utils/calculations";
 import { getRecommendation } from "./utils/recommendations";
-import { loadFinanceData, saveFinanceData } from "./utils/storage";
+import {
+  loadFinanceData,
+  loadLanguage,
+  saveFinanceData,
+  saveLanguage,
+} from "./utils/storage";
 
 const initialData: FinanceData = {
   monthlyIncome: 3000,
@@ -43,16 +49,26 @@ const initialData: FinanceData = {
 };
 
 function App() {
+  const [language, setLanguage] = useState<Language>(() => {
+    return loadLanguage();
+  });
+
   const [financeData, setFinanceData] = useState<FinanceData>(() => {
     return loadFinanceData() ?? initialData;
   });
+
+  const t = translations[language];
 
   useEffect(() => {
     saveFinanceData(financeData);
   }, [financeData]);
 
+  useEffect(() => {
+    saveLanguage(language);
+  }, [language]);
+
   const summary = calculateFinanceSummary(financeData);
-  const recommendation = getRecommendation(summary);
+  const recommendation = getRecommendation(summary, language);
 
   function handleMonthlyIncomeChange(value: string) {
     setFinanceData({
@@ -101,12 +117,13 @@ function App() {
 
   return (
     <main className="app">
-      <Header />
+      <Header language={language} t={t} onLanguageChange={setLanguage} />
 
       <MonthlySnapshotForm
         monthlyIncome={financeData.monthlyIncome}
         currentSavings={financeData.goal.currentSavings}
         calmGoal={financeData.goal.calmGoal}
+        t={t.monthlySnapshot}
         onMonthlyIncomeChange={handleMonthlyIncomeChange}
         onCurrentSavingsChange={handleCurrentSavingsChange}
         onCalmGoalChange={handleCalmGoalChange}
@@ -115,14 +132,17 @@ function App() {
       <SummaryCards
         summary={summary}
         currentSavings={financeData.goal.currentSavings}
+        language={language}
+        t={t.summary}
       />
 
-      <RecommendationBox recommendation={recommendation} />
+      <RecommendationBox recommendation={recommendation} t={t.recommendation} />
 
-      <ExpenseForm onAddExpense={handleAddExpense} />
+      <ExpenseForm t={t} onAddExpense={handleAddExpense} />
 
       <ExpenseList
         expenses={financeData.expenses}
+        t={t}
         onDeleteExpense={handleDeleteExpense}
       />
     </main>

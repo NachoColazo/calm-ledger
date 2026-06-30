@@ -1,12 +1,14 @@
 import { useState, type SyntheticEvent } from "react";
+import type { TranslationContent } from "../translations";
 import { expenseCategories, expenseTypes } from "../types";
 import type { Expense, ExpenseCategory, ExpenseType } from "../types";
 
 interface ExpenseFormProps {
+  t: TranslationContent;
   onAddExpense: (expense: Expense) => void;
 }
 
-function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
+function ExpenseForm({ t, onAddExpense }: ExpenseFormProps) {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [expenseCategory, setExpenseCategory] =
@@ -42,36 +44,33 @@ function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
   return (
     <section className="expense-section">
       <article className="form-card">
-        <h2>Add Monthly Expense</h2>
-        <p>
-          Add your recurring monthly expenses. Calm Ledger will use them to
-          calculate your balance and savings potential.
-        </p>
+        <h2>{t.expenseForm.title}</h2>
+        <p>{t.expenseForm.description}</p>
 
         <form className="expense-form-grid" onSubmit={handleSubmit}>
           <label>
-            Expense Name
+            {t.expenseForm.expenseName}
             <input
               type="text"
-              placeholder="Car insurance"
+              placeholder={t.expenseForm.expenseNamePlaceholder}
               value={expenseName}
               onChange={(event) => setExpenseName(event.target.value)}
             />
           </label>
 
           <label>
-            Amount
+            {t.expenseForm.amount}
             <input
               type="number"
               min="0"
-              placeholder="180"
+              placeholder={t.expenseForm.amountPlaceholder}
               value={expenseAmount}
               onChange={(event) => setExpenseAmount(event.target.value)}
             />
           </label>
 
           <label>
-            Category
+            {t.expenseForm.category}
             <select
               value={expenseCategory}
               onChange={(event) =>
@@ -80,14 +79,14 @@ function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             >
               {expenseCategories.map((category) => (
                 <option value={category} key={category}>
-                  {category}
+                  {t.categoryLabels[category]}
                 </option>
               ))}
             </select>
           </label>
 
           <label>
-            Type
+            {t.expenseForm.type}
             <select
               value={expenseType}
               onChange={(event) =>
@@ -96,14 +95,14 @@ function ExpenseForm({ onAddExpense }: ExpenseFormProps) {
             >
               {expenseTypes.map((type) => (
                 <option value={type} key={type}>
-                  {type}
+                  {t.expenseTypeLabels[type]}
                 </option>
               ))}
             </select>
           </label>
 
           <button className="primary-button" type="submit">
-            Add Expense
+            {t.expenseForm.addExpense}
           </button>
         </form>
       </article>

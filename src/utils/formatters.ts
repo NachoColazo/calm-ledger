@@ -1,3 +1,9 @@
+import type { Language } from "../translations";
+
+function getLocale(language: Language) {
+  return language === "es" ? "es-US" : "en-US";
+}
+
 export function formatCurrency(value: number) {
   const absoluteValue = Math.abs(value);
 
@@ -17,20 +23,26 @@ export function formatCurrency(value: number) {
   }).format(value);
 }
 
-export function formatPercent(value: number) {
-  return new Intl.NumberFormat("en-US", {
+export function formatPercent(value: number, language: Language) {
+  return new Intl.NumberFormat(getLocale(language), {
     style: "percent",
     maximumFractionDigits: 0,
   }).format(value);
 }
 
-export function formatGoalMonth(date: Date | null) {
+export function formatGoalMonth(date: Date | null, language: Language) {
   if (date === null) {
     return "—";
   }
 
-  return new Intl.DateTimeFormat("en-US", {
+  const formattedDate = new Intl.DateTimeFormat(getLocale(language), {
     month: "short",
     year: "numeric",
   }).format(date);
+
+  return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+}
+
+export function formatLabel(value: string) {
+  return value.charAt(0).toUpperCase() + value.slice(1);
 }

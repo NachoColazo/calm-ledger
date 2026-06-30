@@ -1,7 +1,10 @@
+import type { TranslationContent } from "../translations";
+
 interface MonthlySnapshotFormProps {
   monthlyIncome: number;
   currentSavings: number;
   calmGoal: number;
+  t: TranslationContent["monthlySnapshot"];
   onMonthlyIncomeChange: (value: string) => void;
   onCurrentSavingsChange: (value: string) => void;
   onCalmGoalChange: (value: string) => void;
@@ -11,6 +14,7 @@ function MonthlySnapshotForm({
   monthlyIncome,
   currentSavings,
   calmGoal,
+  t,
   onMonthlyIncomeChange,
   onCurrentSavingsChange,
   onCalmGoalChange,
@@ -18,15 +22,12 @@ function MonthlySnapshotForm({
   return (
     <section className="input-section">
       <article className="form-card">
-        <h2>Your Monthly Snapshot</h2>
-        <p>
-          Start with your real monthly numbers. These values help Calm Ledger
-          estimate how close you are to your financial peace goal.
-        </p>
+        <h2>{t.title}</h2>
+        <p>{t.description}</p>
 
         <div className="form-grid">
           <label>
-            Monthly Income
+            {t.monthlyIncome}
             <input
               type="number"
               min="0"
@@ -37,7 +38,7 @@ function MonthlySnapshotForm({
           </label>
 
           <label>
-            Current Savings
+            {t.currentSavings}
             <input
               type="number"
               min="0"
@@ -48,7 +49,7 @@ function MonthlySnapshotForm({
           </label>
 
           <label>
-            Calm Goal
+            {t.calmGoal}
             <input
               type="number"
               min="0"
