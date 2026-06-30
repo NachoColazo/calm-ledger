@@ -140,6 +140,12 @@ function App() {
         onCalmGoalChange={handleCalmGoalChange}
       />
 
+      <CalmGoalHelper
+        summary={summary}
+        t={t.calmGoalHelper}
+        onSelectGoal={handleSelectCalmGoal}
+      />
+
       <SummaryCards
         summary={summary}
         currentSavings={financeData.goal.currentSavings}
@@ -148,12 +154,6 @@ function App() {
       />
 
       <RecommendationBox recommendation={recommendation} t={t.recommendation} />
-
-      <CalmGoalHelper
-        summary={summary}
-        t={t.calmGoalHelper}
-        onSelectGoal={handleSelectCalmGoal}
-      />
 
       <ExpenseForm t={t} onAddExpense={handleAddExpense} />
 

@@ -339,20 +339,20 @@ input[type="number"] {
 
 .goal-helper {
   margin-bottom: 32px;
-  background: #fffaf0;
+  background: rgba(255, 250, 240, 0.72);
   border: 1px solid #eadcc4;
-  border-radius: 22px;
-  padding: 24px;
-  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 24px rgba(77, 57, 30, 0.06);
 }
 
 .goal-helper-header {
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .goal-helper-label {
-  margin: 0 0 8px;
-  font-size: 0.8rem;
+  margin: 0 0 6px;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 800;
@@ -360,59 +360,61 @@ input[type="number"] {
 }
 
 .goal-helper h2 {
-  margin: 0 0 10px;
+  margin: 0 0 8px;
   color: #3f3222;
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
 }
 
 .goal-helper p {
   margin: 0;
   color: #6f604d;
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .goal-options {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 14px;
 }
 
 .goal-option-card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 18px;
+  gap: 14px;
   background: #fffdf8;
   border: 1px solid #eadcc4;
-  border-radius: 18px;
-  padding: 18px;
+  border-radius: 16px;
+  padding: 14px;
 }
 
 .goal-option-card span {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   color: #7b6a55;
-  font-size: 0.9rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
 }
 
 .goal-option-card strong {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   color: #3f3222;
-  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  font-size: clamp(1.25rem, 3vw, 1.55rem);
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
 
 .goal-option-card p {
-  font-size: 0.95rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
 }
 
 .secondary-button {
   border: 1px solid #d8c7aa;
-  border-radius: 14px;
-  padding: 11px 14px;
-  background: #fffaf0;
+  border-radius: 12px;
+  padding: 9px 12px;
+  background: transparent;
   color: #6f4e2f;
   font-weight: 800;
   cursor: pointer;
@@ -425,8 +427,9 @@ input[type="number"] {
 .goal-helper-empty {
   background: #fffdf8;
   border: 1px dashed #d8c7aa;
-  border-radius: 18px;
-  padding: 18px;
+  border-radius: 16px;
+  padding: 16px;
+  color: #7b6a55;
 }
 
 @media (max-width: 900px) {
