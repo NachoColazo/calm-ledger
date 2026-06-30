@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import MonthlySnapshotForm from "./components/MonthlySnapshotForm";
 import SummaryCards from "./components/SummaryCards";
 import RecommendationBox from "./components/RecommendationBox";
+import CalmGoalHelper from "./components/CalmGoalHelper";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import { translations, type Language } from "./translations";
@@ -97,6 +98,16 @@ function App() {
     });
   }
 
+  function handleSelectCalmGoal(goalAmount: number) {
+    setFinanceData({
+      ...financeData,
+      goal: {
+        ...financeData.goal,
+        calmGoal: goalAmount,
+      },
+    });
+  }
+
   function handleAddExpense(newExpense: Expense) {
     setFinanceData({
       ...financeData,
@@ -137,6 +148,12 @@ function App() {
       />
 
       <RecommendationBox recommendation={recommendation} t={t.recommendation} />
+
+      <CalmGoalHelper
+        summary={summary}
+        t={t.calmGoalHelper}
+        onSelectGoal={handleSelectCalmGoal}
+      />
 
       <ExpenseForm t={t} onAddExpense={handleAddExpense} />
 

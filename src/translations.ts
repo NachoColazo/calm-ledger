@@ -37,6 +37,20 @@ export interface TranslationContent {
     label: string;
   };
 
+  calmGoalHelper: {
+    label: string;
+    title: string;
+    description: string;
+    starterTitle: string;
+    starterDescription: string;
+    stableTitle: string;
+    stableDescription: string;
+    strongTitle: string;
+    strongDescription: string;
+    useGoal: string;
+    emptyState: string;
+  };
+
   expenseForm: {
     title: string;
     description: string;
@@ -95,6 +109,22 @@ export const translations: Record<Language, TranslationContent> = {
 
     recommendation: {
       label: "Calm Recommendation",
+    },
+
+    calmGoalHelper: {
+      label: "Calm Goal Helper",
+      title: "Need help choosing your calm goal?",
+      description:
+        "Use your necessary monthly expenses as a simple starting point. These suggestions are not rules, but they can help you choose a realistic financial peace goal.",
+      starterTitle: "Starter Goal",
+      starterDescription: "Covers about 1 month of necessary expenses.",
+      stableTitle: "Stable Goal",
+      stableDescription: "Covers about 3 months of necessary expenses.",
+      strongTitle: "Strong Goal",
+      strongDescription: "Covers about 6 months of necessary expenses.",
+      useGoal: "Use this goal",
+      emptyState:
+        "Add necessary expenses first so Calm Ledger can suggest a calm goal.",
     },
 
     expenseForm: {
@@ -168,6 +198,22 @@ export const translations: Record<Language, TranslationContent> = {
 
     recommendation: {
       label: "Recomendación de calma",
+    },
+
+    calmGoalHelper: {
+      label: "Ayuda para tu meta",
+      title: "¿Necesitás ayuda para elegir tu meta?",
+      description:
+        "Usá tus gastos mensuales necesarios como punto de partida. Estas sugerencias no son reglas, pero pueden ayudarte a elegir una meta de tranquilidad financiera más realista.",
+      starterTitle: "Meta inicial",
+      starterDescription: "Cubre aproximadamente 1 mes de gastos necesarios.",
+      stableTitle: "Meta estable",
+      stableDescription: "Cubre aproximadamente 3 meses de gastos necesarios.",
+      strongTitle: "Meta fuerte",
+      strongDescription: "Cubre aproximadamente 6 meses de gastos necesarios.",
+      useGoal: "Usar esta meta",
+      emptyState:
+        "Agregá gastos necesarios primero para que Calm Ledger pueda sugerir una meta.",
     },
 
     expenseForm: {

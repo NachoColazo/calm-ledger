@@ -337,6 +337,98 @@ input[type="number"] {
   border-color: #d8a58b;
 }
 
+.goal-helper {
+  margin-bottom: 32px;
+  background: #fffaf0;
+  border: 1px solid #eadcc4;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(77, 57, 30, 0.08);
+}
+
+.goal-helper-header {
+  margin-bottom: 22px;
+}
+
+.goal-helper-label {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+  color: #8a6f47;
+}
+
+.goal-helper h2 {
+  margin: 0 0 10px;
+  color: #3f3222;
+}
+
+.goal-helper p {
+  margin: 0;
+  color: #6f604d;
+  line-height: 1.6;
+}
+
+.goal-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.goal-option-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  background: #fffdf8;
+  border: 1px solid #eadcc4;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.goal-option-card span {
+  display: block;
+  margin-bottom: 8px;
+  color: #7b6a55;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.goal-option-card strong {
+  display: block;
+  margin-bottom: 10px;
+  color: #3f3222;
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.goal-option-card p {
+  font-size: 0.95rem;
+}
+
+.secondary-button {
+  border: 1px solid #d8c7aa;
+  border-radius: 14px;
+  padding: 11px 14px;
+  background: #fffaf0;
+  color: #6f4e2f;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  background: #f4e5cb;
+}
+
+.goal-helper-empty {
+  background: #fffdf8;
+  border: 1px dashed #d8c7aa;
+  border-radius: 18px;
+  padding: 18px;
+}
+
 @media (max-width: 900px) {
   .expense-form-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -344,6 +436,10 @@ input[type="number"] {
 
   .primary-button {
     width: 100%;
+  }
+
+  .goal-options {
+    grid-template-columns: 1fr;
   }
 }
 
