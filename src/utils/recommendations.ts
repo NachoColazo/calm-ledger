@@ -58,9 +58,9 @@ const recommendationMessages = {
   es: {
     startWithIncome: {
       level: "caution",
-      title: "Empezá con tu ingreso real",
+      title: "Comienza con tu ingreso real",
       message:
-        "Agregá tu ingreso mensual para que Calm Ledger pueda entender tu situación financiera.",
+        "Agrega tu ingreso mensual para que Calm Ledger pueda entender tu situación financiera.",
     },
     expensesHigherThanIncome: {
       level: "warning",
@@ -72,19 +72,19 @@ const recommendationMessages = {
       level: "warning",
       title: "Tus gastos están muy cerca de tus ingresos",
       message:
-        "Estás cubriendo tus gastos, pero queda muy poco margen. Considerá reducir gastos no esenciales antes de sumar nuevas compras.",
+        "Estás cubriendo tus gastos, pero queda muy poco margen. Considera reducir gastos no esenciales antes de sumar nuevas compras.",
     },
     reachedGoal: {
       level: "positive",
       title: "Llegaste a tu meta de tranquilidad",
       message:
-        "Tus ahorros actuales ya cubren tu meta de tranquilidad financiera. Podés mantener tus hábitos y tomar decisiones de gasto con más calma.",
+        "Tus ahorros actuales ya cubren tu meta de tranquilidad financiera. Puedes mantener tus hábitos y tomar decisiones de gasto con más calma.",
     },
     buildingPeace: {
       level: "positive",
       title: "Estás construyendo tranquilidad financiera",
       message:
-        "Tu potencial de ahorro es saludable. Podés seguir avanzando hacia tu meta y darte un gusto moderado si encaja con tus prioridades.",
+        "Tu potencial de ahorro es saludable. Puedes seguir avanzando hacia tu meta y darte un gusto moderado si encaja con tus prioridades.",
     },
     slowProgress: {
       level: "caution",

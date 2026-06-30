@@ -151,6 +151,8 @@ function App() {
         currentSavings={financeData.goal.currentSavings}
         language={language}
         t={t.summary}
+        summaryInfo={t.summaryInfo}
+        modal={t.modal}
       />
 
       <RecommendationBox recommendation={recommendation} t={t.recommendation} />
