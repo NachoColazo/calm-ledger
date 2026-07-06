@@ -7,6 +7,7 @@ import RecommendationBox from "./components/RecommendationBox";
 import CalmGoalHelper from "./components/CalmGoalHelper";
 import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
+import DataControls from "./components/DataControls";
 import { translations, type Language } from "./translations";
 import type { Expense, FinanceData } from "./types";
 import { calculateFinanceSummary } from "./utils/calculations";
@@ -126,6 +127,16 @@ function App() {
     });
   }
 
+  function handleResetData() {
+    const shouldReset = window.confirm(t.dataControls.confirmMessage);
+
+    if (!shouldReset) {
+      return;
+    }
+
+    setFinanceData(initialData);
+  }
+
   return (
     <main className="app">
       <Header language={language} t={t} onLanguageChange={setLanguage} />
@@ -164,6 +175,8 @@ function App() {
         t={t}
         onDeleteExpense={handleDeleteExpense}
       />
+
+      <DataControls t={t.dataControls} onResetData={handleResetData} />
     </main>
   );
 }

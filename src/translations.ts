@@ -96,6 +96,14 @@ export interface TranslationContent {
     delete: string;
   };
 
+  dataControls: {
+    label: string;
+    title: string;
+    description: string;
+    resetButton: string;
+    confirmMessage: string;
+  };
+
   categoryLabels: Record<ExpenseCategory, string>;
   expenseTypeLabels: Record<ExpenseType, string>;
 }
@@ -239,6 +247,16 @@ export const translations: Record<Language, TranslationContent> = {
       title: "Monthly Expenses",
       emptyState: "No expenses yet. Add your first monthly expense above.",
       delete: "Delete",
+    },
+
+    dataControls: {
+      label: "Data Controls",
+      title: "Need a fresh start?",
+      description:
+        "Reset your local Calm Ledger data and return to the starter numbers. Your selected language will stay the same.",
+      resetButton: "Reset data",
+      confirmMessage:
+        "Are you sure you want to reset your Calm Ledger data? This will replace your current numbers with the starter data.",
     },
 
     categoryLabels: {
@@ -397,6 +415,16 @@ export const translations: Record<Language, TranslationContent> = {
       emptyState:
         "Todavía no hay gastos. Agrega tu primer gasto mensual arriba.",
       delete: "Borrar",
+    },
+
+    dataControls: {
+      label: "Controles de datos",
+      title: "¿Necesitas empezar de nuevo?",
+      description:
+        "Restablece tus datos locales de Calm Ledger y vuelve a los números iniciales. El idioma seleccionado se mantendrá igual.",
+      resetButton: "Restablecer datos",
+      confirmMessage:
+        "¿Seguro que quieres restablecer tus datos de Calm Ledger? Esto reemplazará tus números actuales con los datos iniciales.",
     },
 
     categoryLabels: {
