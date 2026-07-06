@@ -57,6 +57,25 @@
   font-weight: 700;
 }
 
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  color: #6f4e2f;
+  background: #fffaf0;
+  border: 1px solid #eadcc4;
+  border-radius: 18px;
+  box-shadow: 0 10px 24px rgba(77, 57, 30, 0.08);
+}
+
 h1 {
   margin: 0;
   font-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -674,6 +693,21 @@ input[type="number"] {
 
   .summary-grid {
     grid-template-columns: 1fr;
+  }
+
+  .brand-title {
+    align-items: center;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .brand-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand-title h1 {
+    font-size: clamp(2.1rem, 11vw, 4.5rem);
   }
 
   .expense-card {
