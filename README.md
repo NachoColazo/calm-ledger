@@ -18,7 +18,7 @@ It does not use a backend, authentication, database, bank connections, or AI yet
 
 ## Live Demo
 
-Coming soon.
+[View the live app](https://calm-ledger-ten.vercel.app)
 
 ---
 
