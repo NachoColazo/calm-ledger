@@ -649,6 +649,19 @@ input[type="number"] {
   outline: none;
 }
 
+.form-card .demo-note {
+  display: inline-block;
+  max-width: 100%;
+  margin: -8px 0 22px;
+  padding: 8px 12px;
+  background: #f7f1dc;
+  border: 1px solid #eadcc4;
+  border-radius: 999px;
+  color: #7b6a55;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   .expense-form-grid {
     grid-template-columns: repeat(2, 1fr);

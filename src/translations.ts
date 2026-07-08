@@ -27,6 +27,7 @@ export interface TranslationContent {
   monthlySnapshot: {
     title: string;
     description: string;
+    demoNote: string;
     monthlyIncome: string;
     currentSavings: string;
     calmGoal: string;
@@ -122,6 +123,8 @@ export const translations: Record<Language, TranslationContent> = {
       title: "Your Monthly Snapshot",
       description:
         "Start with your real monthly numbers. These values help Calm Ledger estimate how close you are to your financial peace goal.",
+      demoNote:
+        "These are starter demo numbers. Replace them with your own monthly values.",
       monthlyIncome: "Monthly Income",
       currentSavings: "Current Savings",
       calmGoal: "Calm Goal",
@@ -289,6 +292,8 @@ export const translations: Record<Language, TranslationContent> = {
       title: "Tu resumen mensual",
       description:
         "Comienza con tus números reales del mes. Estos valores ayudan a Calm Ledger a estimar qué tan cerca estás de tu meta de tranquilidad financiera.",
+      demoNote:
+        "Estos son números iniciales de ejemplo. Reemplázalos con tus propios valores mensuales.",
       monthlyIncome: "Ingreso mensual",
       currentSavings: "Ahorros actuales",
       calmGoal: "Meta de tranquilidad",

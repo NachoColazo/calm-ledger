@@ -4,6 +4,7 @@ interface MonthlySnapshotFormProps {
   monthlyIncome: number;
   currentSavings: number;
   calmGoal: number;
+  isUsingDemoData: boolean;
   t: TranslationContent["monthlySnapshot"];
   onMonthlyIncomeChange: (value: string) => void;
   onCurrentSavingsChange: (value: string) => void;
@@ -14,6 +15,7 @@ function MonthlySnapshotForm({
   monthlyIncome,
   currentSavings,
   calmGoal,
+  isUsingDemoData,
   t,
   onMonthlyIncomeChange,
   onCurrentSavingsChange,
@@ -24,6 +26,8 @@ function MonthlySnapshotForm({
       <article className="form-card">
         <h2>{t.title}</h2>
         <p>{t.description}</p>
+
+        {isUsingDemoData && <p className="demo-note">{t.demoNote}</p>}
 
         <div className="form-grid">
           <label>

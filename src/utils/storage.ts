@@ -3,6 +3,7 @@ import type { FinanceData } from "../types";
 
 const FINANCE_STORAGE_KEY = "calm-ledger-finance-data";
 const LANGUAGE_STORAGE_KEY = "calm-ledger-language";
+const DEMO_DATA_STORAGE_KEY = "calm-ledger-demo-data-status";
 
 export function loadFinanceData(): FinanceData | null {
   const storedData = localStorage.getItem(FINANCE_STORAGE_KEY);
@@ -42,5 +43,27 @@ export function saveLanguage(language: Language) {
     localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
   } catch (error) {
     console.error("Failed to save language to localStorage:", error);
+  }
+}
+
+export function loadDemoDataStatus(): boolean {
+  const storedStatus = localStorage.getItem(DEMO_DATA_STORAGE_KEY);
+
+  if (storedStatus === "true") {
+    return true;
+  }
+
+  if (storedStatus === "false") {
+    return false;
+  }
+
+  return true;
+}
+
+export function saveDemoDataStatus(isUsingDemoData: boolean) {
+  try {
+    localStorage.setItem(DEMO_DATA_STORAGE_KEY, String(isUsingDemoData));
+  } catch (error) {
+    console.error("Failed to save demo data status to localStorage:", error);
   }
 }

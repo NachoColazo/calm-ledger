@@ -13,8 +13,10 @@ import type { Expense, FinanceData } from "./types";
 import { calculateFinanceSummary } from "./utils/calculations";
 import { getRecommendation } from "./utils/recommendations";
 import {
+  loadDemoDataStatus,
   loadFinanceData,
   loadLanguage,
+  saveDemoDataStatus,
   saveFinanceData,
   saveLanguage,
 } from "./utils/storage";
@@ -59,6 +61,10 @@ function App() {
     return loadFinanceData() ?? initialData;
   });
 
+  const [isUsingDemoData, setIsUsingDemoData] = useState(() => {
+    return loadDemoDataStatus();
+  });
+
   const t = translations[language];
 
   useEffect(() => {
@@ -69,10 +75,20 @@ function App() {
     saveLanguage(language);
   }, [language]);
 
+  useEffect(() => {
+    saveDemoDataStatus(isUsingDemoData);
+  }, [isUsingDemoData]);
+
   const summary = calculateFinanceSummary(financeData);
   const recommendation = getRecommendation(summary, language);
 
+  function markDataAsCustom() {
+    setIsUsingDemoData(false);
+  }
+
   function handleMonthlyIncomeChange(value: string) {
+    markDataAsCustom();
+
     setFinanceData({
       ...financeData,
       monthlyIncome: Number(value),
@@ -80,6 +96,8 @@ function App() {
   }
 
   function handleCurrentSavingsChange(value: string) {
+    markDataAsCustom();
+
     setFinanceData({
       ...financeData,
       goal: {
@@ -90,6 +108,8 @@ function App() {
   }
 
   function handleCalmGoalChange(value: string) {
+    markDataAsCustom();
+
     setFinanceData({
       ...financeData,
       goal: {
@@ -100,6 +120,8 @@ function App() {
   }
 
   function handleSelectCalmGoal(goalAmount: number) {
+    markDataAsCustom();
+
     setFinanceData({
       ...financeData,
       goal: {
@@ -110,6 +132,8 @@ function App() {
   }
 
   function handleAddExpense(newExpense: Expense) {
+    markDataAsCustom();
+
     setFinanceData({
       ...financeData,
       expenses: [...financeData.expenses, newExpense],
@@ -117,6 +141,8 @@ function App() {
   }
 
   function handleDeleteExpense(expenseId: string) {
+    markDataAsCustom();
+
     const updatedExpenses = financeData.expenses.filter((expense) => {
       return expense.id !== expenseId;
     });
@@ -135,6 +161,7 @@ function App() {
     }
 
     setFinanceData(initialData);
+    setIsUsingDemoData(true);
   }
 
   return (
@@ -145,6 +172,7 @@ function App() {
         monthlyIncome={financeData.monthlyIncome}
         currentSavings={financeData.goal.currentSavings}
         calmGoal={financeData.goal.calmGoal}
+        isUsingDemoData={isUsingDemoData}
         t={t.monthlySnapshot}
         onMonthlyIncomeChange={handleMonthlyIncomeChange}
         onCurrentSavingsChange={handleCurrentSavingsChange}
