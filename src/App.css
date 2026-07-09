@@ -235,7 +235,8 @@ input[type="number"] {
 }
 
 /* Custom select arrow */
-.expense-form-grid select {
+.expense-form-grid select,
+.expense-edit-grid select {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -293,6 +294,92 @@ input[type="number"] {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.expense-card:not(.expense-card-editing) {
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.expense-card:not(.expense-card-editing):hover {
+  border-color: #d8c4a6;
+  box-shadow: 0 10px 24px rgba(77, 57, 30, 0.07);
+  transform: translateY(-1px);
+}
+
+.expense-item {
+  cursor: pointer;
+}
+
+.expense-item:focus {
+  outline: 3px solid rgba(168, 132, 79, 0.25);
+  outline-offset: 3px;
+}
+
+.expense-item-editing {
+  align-items: flex-end;
+  gap: 16px;
+  border-color: #caa574;
+  box-shadow: 0 16px 34px rgba(77, 57, 30, 0.1);
+  cursor: default;
+}
+
+.expense-edit-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(170px, 1.3fr) minmax(110px, 0.7fr) minmax(140px, 1fr)
+    minmax(130px, 0.9fr);
+  gap: 14px;
+  flex: 1;
+  width: 100%;
+}
+
+.expense-edit-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #4f3a25;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.expense-edit-grid input,
+.expense-edit-grid select {
+  width: 100%;
+  border: 1px solid #d8c4a6;
+  border-radius: 12px;
+  padding: 9px 12px;
+  background-color: #fffdf8;
+  color: #3f3222;
+  font: inherit;
+  font-weight: 700;
+}
+
+.expense-edit-grid input:focus,
+.expense-edit-grid select:focus {
+  outline: 2px solid rgba(168, 132, 79, 0.22);
+  border-color: #a8844f;
+}
+
+.expense-card-editing {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 14px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-color: #caa574;
+  box-shadow: 0 14px 28px rgba(77, 57, 30, 0.08);
+  cursor: default;
+}
+
+.expense-card-editing .delete-button {
+  align-self: end;
+  margin-bottom: 0;
 }
 
 .delete-button {
@@ -667,7 +754,12 @@ input[type="number"] {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .expense-edit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .primary-button {
+    grid-column: 1 / -1;
     width: 100%;
   }
 
@@ -691,6 +783,18 @@ input[type="number"] {
 @media (max-width: 560px) {
   .expense-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .expense-edit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expense-card-editing {
+    grid-template-columns: 1fr;
+  }
+
+  .expense-card-editing .delete-button {
+    align-self: center;
   }
 }
 
@@ -727,6 +831,10 @@ input[type="number"] {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+  }
+
+  .expense-card-editing {
+    align-items: stretch;
   }
 
   .expense-actions {

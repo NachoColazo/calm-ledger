@@ -140,6 +140,23 @@ function App() {
     });
   }
 
+  function handleUpdateExpense(updatedExpense: Expense) {
+    markDataAsCustom();
+
+    const updatedExpenses = financeData.expenses.map((expense) => {
+      if (expense.id === updatedExpense.id) {
+        return updatedExpense;
+      }
+
+      return expense;
+    });
+
+    setFinanceData({
+      ...financeData,
+      expenses: updatedExpenses,
+    });
+  }
+
   function handleDeleteExpense(expenseId: string) {
     markDataAsCustom();
 
@@ -201,6 +218,7 @@ function App() {
       <ExpenseList
         expenses={financeData.expenses}
         t={t}
+        onUpdateExpense={handleUpdateExpense}
         onDeleteExpense={handleDeleteExpense}
       />
 
