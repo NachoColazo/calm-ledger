@@ -107,6 +107,18 @@ export interface TranslationContent {
 
   categoryLabels: Record<ExpenseCategory, string>;
   expenseTypeLabels: Record<ExpenseType, string>;
+
+  monthlyHistory: {
+    title: string;
+    description: string;
+    saveButton: string;
+    emptyState: string;
+    savedMonths: string;
+    income: string;
+    expenses: string;
+    potentialSavings: string;
+    updated: string;
+  };
 }
 
 export const translations: Record<Language, TranslationContent> = {
@@ -278,6 +290,20 @@ export const translations: Record<Language, TranslationContent> = {
       necessary: "Necessary",
       personal: "Personal",
     },
+
+    monthlyHistory: {
+      title: "Monthly History",
+      description:
+        "Save a snapshot of your current month so you can start tracking your financial progress over time.",
+      saveButton: "Save this month",
+      emptyState:
+        "No monthly records yet. Save this month to start building your history.",
+      savedMonths: "Saved months",
+      income: "Income",
+      expenses: "Expenses",
+      potentialSavings: "Potential savings",
+      updated: "Updated",
+    },
   },
 
   es: {
@@ -447,6 +473,19 @@ export const translations: Record<Language, TranslationContent> = {
     expenseTypeLabels: {
       necessary: "Necesario",
       personal: "Personal",
+    },
+    monthlyHistory: {
+      title: "Historial mensual",
+      description:
+        "Guarda una foto del mes actual para empezar a seguir tu progreso financiero con el tiempo.",
+      saveButton: "Guardar este mes",
+      emptyState:
+        "Todavía no hay registros mensuales. Guarda este mes para empezar a construir tu historial.",
+      savedMonths: "Meses guardados",
+      income: "Ingreso",
+      expenses: "Gastos",
+      potentialSavings: "Ahorro potencial",
+      updated: "Actualizado",
     },
   },
 };

@@ -749,6 +749,118 @@ input[type="number"] {
   font-weight: 700;
 }
 
+.monthly-history-section {
+  margin-top: 28px;
+}
+
+.monthly-history-card {
+  padding: 18px;
+  background: rgba(255, 250, 240, 0.5);
+  border: 1px solid #eadcc4;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(77, 57, 30, 0.06);
+}
+
+.monthly-history-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.monthly-history-header h2 {
+  margin: 0 0 6px;
+  color: #3f3222;
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+}
+
+.monthly-history-header p {
+  max-width: 680px;
+  margin: 0;
+  color: #6f604d;
+  line-height: 1.45;
+}
+
+.monthly-history-button {
+  flex: 0 0 auto;
+  border: 1px solid #cfae83;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: #7a5635;
+  color: #fffaf0;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.monthly-history-button:hover {
+  background: #6b492d;
+  box-shadow: 0 10px 22px rgba(77, 57, 30, 0.12);
+  transform: translateY(-1px);
+}
+
+.monthly-record-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.monthly-record-card {
+  padding: 16px;
+  background: #fffdf8;
+  border: 1px solid #eadcc4;
+  border-radius: 16px;
+}
+
+.monthly-record-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.monthly-record-top h3 {
+  margin: 0 0 4px;
+  color: #2f261b;
+}
+
+.monthly-record-top p {
+  margin: 0;
+  color: #7b6a55;
+  font-size: 0.9rem;
+}
+
+.monthly-record-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.monthly-record-metrics div {
+  padding: 12px;
+  background: #fffaf0;
+  border: 1px solid #f0e1c8;
+  border-radius: 14px;
+}
+
+.monthly-record-metrics span {
+  display: block;
+  margin-bottom: 5px;
+  color: #7b6a55;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.monthly-record-metrics strong {
+  color: #2f261b;
+  font-size: 1.05rem;
+}
+
 @media (max-width: 900px) {
   .expense-form-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -795,6 +907,19 @@ input[type="number"] {
 
   .expense-card-editing .delete-button {
     align-self: center;
+  }
+
+  .monthly-history-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .monthly-history-button {
+    width: 100%;
+  }
+
+  .monthly-record-metrics {
+    grid-template-columns: 1fr;
   }
 }
 

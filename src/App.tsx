@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import MonthlySnapshotForm from "./components/MonthlySnapshotForm";
+import MonthlyHistory from "./components/MonthlyHistory";
 import SummaryCards from "./components/SummaryCards";
 import RecommendationBox from "./components/RecommendationBox";
 import CalmGoalHelper from "./components/CalmGoalHelper";
@@ -9,16 +10,18 @@ import ExpenseForm from "./components/ExpenseForm";
 import ExpenseList from "./components/ExpenseList";
 import DataControls from "./components/DataControls";
 import { translations, type Language } from "./translations";
-import type { Expense, FinanceData } from "./types";
+import type { Expense, FinanceData, MonthlyRecord } from "./types";
 import { calculateFinanceSummary } from "./utils/calculations";
 import { getRecommendation } from "./utils/recommendations";
 import {
   loadDemoDataStatus,
   loadFinanceData,
   loadLanguage,
+  loadMonthlyRecords,
   saveDemoDataStatus,
   saveFinanceData,
   saveLanguage,
+  saveMonthlyRecords,
 } from "./utils/storage";
 
 const initialData: FinanceData = {
@@ -65,6 +68,10 @@ function App() {
     return loadDemoDataStatus();
   });
 
+  const [monthlyRecords, setMonthlyRecords] = useState<MonthlyRecord[]>(() => {
+    return loadMonthlyRecords();
+  });
+
   const t = translations[language];
 
   useEffect(() => {
@@ -78,6 +85,10 @@ function App() {
   useEffect(() => {
     saveDemoDataStatus(isUsingDemoData);
   }, [isUsingDemoData]);
+
+  useEffect(() => {
+    saveMonthlyRecords(monthlyRecords);
+  }, [monthlyRecords]);
 
   const summary = calculateFinanceSummary(financeData);
   const recommendation = getRecommendation(summary, language);
@@ -181,6 +192,50 @@ function App() {
     setIsUsingDemoData(true);
   }
 
+  function createRecordId() {
+    if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+      return crypto.randomUUID();
+    }
+
+    return String(Date.now());
+  }
+
+  function getCurrentMonthKey(date = new Date()) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+
+    return `${year}-${month}`;
+  }
+
+  function handleSaveCurrentMonth() {
+    const now = new Date().toISOString();
+    const currentMonthKey = getCurrentMonthKey();
+
+    const existingRecord = monthlyRecords.find((record) => {
+      return record.monthKey === currentMonthKey;
+    });
+
+    const currentRecord: MonthlyRecord = {
+      id: existingRecord?.id ?? createRecordId(),
+      monthKey: currentMonthKey,
+      createdAt: existingRecord?.createdAt ?? now,
+      updatedAt: now,
+      financeData,
+    };
+
+    const updatedRecords = existingRecord
+      ? monthlyRecords.map((record) => {
+          if (record.monthKey === currentMonthKey) {
+            return currentRecord;
+          }
+
+          return record;
+        })
+      : [currentRecord, ...monthlyRecords];
+
+    setMonthlyRecords(updatedRecords);
+  }
+
   return (
     <main className="app">
       <Header language={language} t={t} onLanguageChange={setLanguage} />
@@ -220,6 +275,13 @@ function App() {
         t={t}
         onUpdateExpense={handleUpdateExpense}
         onDeleteExpense={handleDeleteExpense}
+      />
+
+      <MonthlyHistory
+        records={monthlyRecords}
+        language={language}
+        t={t.monthlyHistory}
+        onSaveCurrentMonth={handleSaveCurrentMonth}
       />
 
       <DataControls t={t.dataControls} onResetData={handleResetData} />

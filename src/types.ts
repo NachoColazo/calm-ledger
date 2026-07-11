@@ -34,6 +34,14 @@ export interface FinanceData {
   expenses: Expense[];
 }
 
+export interface MonthlyRecord {
+  id: string;
+  monthKey: string;
+  createdAt: string;
+  updatedAt: string;
+  financeData: FinanceData;
+}
+
 export interface FinanceSummary {
   totalIncome: number;
   totalExpenses: number;

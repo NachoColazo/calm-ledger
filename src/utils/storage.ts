@@ -1,9 +1,10 @@
 import type { Language } from "../translations";
-import type { FinanceData } from "../types";
+import type { FinanceData, MonthlyRecord } from "../types";
 
 const FINANCE_STORAGE_KEY = "calm-ledger-finance-data";
 const LANGUAGE_STORAGE_KEY = "calm-ledger-language";
 const DEMO_DATA_STORAGE_KEY = "calm-ledger-demo-data-status";
+const MONTHLY_RECORDS_STORAGE_KEY = "calm-ledger-monthly-records";
 
 export function loadFinanceData(): FinanceData | null {
   const storedData = localStorage.getItem(FINANCE_STORAGE_KEY);
@@ -65,5 +66,31 @@ export function saveDemoDataStatus(isUsingDemoData: boolean) {
     localStorage.setItem(DEMO_DATA_STORAGE_KEY, String(isUsingDemoData));
   } catch (error) {
     console.error("Failed to save demo data status to localStorage:", error);
+  }
+}
+
+export function loadMonthlyRecords(): MonthlyRecord[] {
+  const storedRecords = localStorage.getItem(MONTHLY_RECORDS_STORAGE_KEY);
+
+  if (!storedRecords) {
+    return [];
+  }
+
+  try {
+    return JSON.parse(storedRecords) as MonthlyRecord[];
+  } catch (error) {
+    console.error("Failed to load monthly records from localStorage:", error);
+    return [];
+  }
+}
+
+export function saveMonthlyRecords(monthlyRecords: MonthlyRecord[]) {
+  try {
+    localStorage.setItem(
+      MONTHLY_RECORDS_STORAGE_KEY,
+      JSON.stringify(monthlyRecords),
+    );
+  } catch (error) {
+    console.error("Failed to save monthly records to localStorage:", error);
   }
 }
