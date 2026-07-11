@@ -42,6 +42,27 @@ The app is intentionally focused on **calm financial awareness** instead of aggr
 
 ## Current Features
 
+Calm Ledger currently includes a complete local-first personal finance workflow. Users can enter monthly income, savings, financial goals, and recurring expenses, then review automatic calculations, recommendations, and goal estimates in a calm bilingual interface.
+
+Main features include:
+
+- Monthly income, current savings, and calm financial goal inputs.
+- Recurring monthly expense tracking.
+- Expense categories and expense types.
+- Inline expense editing by clicking an existing expense card.
+- Automatic financial summary calculations.
+- Expense-to-income and potential savings rate overview.
+- Estimated months to reach the calm goal.
+- Estimated goal month based on current savings potential.
+- Calm Goal Helper with suggested starter, stable, and strong goal amounts.
+- Financial recommendation messages based on the user’s current numbers.
+- Clickable summary cards with explanatory modals.
+- English and Spanish language support.
+- Smart demo data note that appears with starter demo numbers and disappears once users enter their own data.
+- Local data persistence using localStorage.
+- Data controls to reset the app back to starter demo numbers.
+- Responsive warm UI with custom branding, favicon, and mobile-friendly layout.
+
 ### Monthly Snapshot
 
 Users can enter and update:

@@ -248,7 +248,8 @@ export const translations: Record<Language, TranslationContent> = {
 
     expenseList: {
       title: "Monthly Expenses",
-      emptyState: "No expenses yet. Add your first monthly expense above.",
+      emptyState:
+        "No monthly expenses yet. Add your first expense to start building your monthly picture.",
       delete: "Delete",
     },
 
@@ -256,10 +257,10 @@ export const translations: Record<Language, TranslationContent> = {
       label: "Data Controls",
       title: "Need a fresh start?",
       description:
-        "Reset your local Calm Ledger data and return to the starter numbers. Your selected language will stay the same.",
-      resetButton: "Reset data",
+        "Return Calm Ledger to the starter demo numbers. Your selected language will stay the same.",
+      resetButton: "Reset to demo",
       confirmMessage:
-        "Are you sure you want to reset your Calm Ledger data? This will replace your current numbers with the starter data.",
+        "Are you sure you want to reset Calm Ledger to the starter demo numbers? This will replace your current numbers.",
     },
 
     categoryLabels: {
@@ -418,18 +419,18 @@ export const translations: Record<Language, TranslationContent> = {
     expenseList: {
       title: "Gastos mensuales",
       emptyState:
-        "Todavía no hay gastos. Agrega tu primer gasto mensual arriba.",
-      delete: "Borrar",
+        "Todavía no hay gastos mensuales. Agrega tu primer gasto para empezar a construir tu resumen mensual.",
+      delete: "Eliminar",
     },
 
     dataControls: {
       label: "Controles de datos",
       title: "¿Necesitas empezar de nuevo?",
       description:
-        "Restablece tus datos locales de Calm Ledger y vuelve a los números iniciales. El idioma seleccionado se mantendrá igual.",
-      resetButton: "Restablecer datos",
+        "Vuelve a los números demo iniciales de Calm Ledger. El idioma seleccionado se mantendrá igual.",
+      resetButton: "Volver a datos demo",
       confirmMessage:
-        "¿Seguro que quieres restablecer tus datos de Calm Ledger? Esto reemplazará tus números actuales con los datos iniciales.",
+        "¿Seguro que quieres volver a los datos demo iniciales de Calm Ledger? Esto reemplazará tus números actuales.",
     },
 
     categoryLabels: {
