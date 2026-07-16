@@ -247,7 +247,9 @@ input[type="number"] {
   background-size: 12px;
 }
 
-.primary-button {
+.primary-button,
+.monthly-history-button,
+.modal-button {
   border: none;
   border-radius: 14px;
   padding: 13px 18px;
@@ -255,11 +257,25 @@ input[type="number"] {
   color: #fffaf0;
   font-weight: 800;
   cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.primary-button,
+.monthly-history-button {
   white-space: nowrap;
 }
 
-.primary-button:hover {
+.primary-button:hover,
+.monthly-history-button:hover,
+.modal-button:hover {
   background: #5c3f25;
+}
+
+.primary-button:focus-visible,
+.monthly-history-button:focus-visible,
+.modal-button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.24);
+  outline: none;
 }
 
 .expense-list {
@@ -309,23 +325,6 @@ input[type="number"] {
   border-color: #d8c4a6;
   box-shadow: 0 10px 24px rgba(77, 57, 30, 0.07);
   transform: translateY(-1px);
-}
-
-.expense-item {
-  cursor: pointer;
-}
-
-.expense-item:focus {
-  outline: 3px solid rgba(168, 132, 79, 0.25);
-  outline-offset: 3px;
-}
-
-.expense-item-editing {
-  align-items: flex-end;
-  gap: 16px;
-  border-color: #caa574;
-  box-shadow: 0 16px 34px rgba(77, 57, 30, 0.1);
-  cursor: default;
 }
 
 .expense-edit-grid {
@@ -382,7 +381,8 @@ input[type="number"] {
   margin-bottom: 0;
 }
 
-.delete-button {
+.delete-button,
+.monthly-record-delete-button {
   border: 1px solid #d8c7aa;
   border-radius: 999px;
   padding: 8px 12px;
@@ -390,10 +390,21 @@ input[type="number"] {
   color: #6f4e2f;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease;
 }
 
-.delete-button:hover {
+.delete-button:hover,
+.monthly-record-delete-button:hover {
   background: #f4e5cb;
+}
+
+.delete-button:focus-visible,
+.monthly-record-delete-button:focus-visible {
+  border-color: #a8844f;
+  box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.16);
+  outline: none;
 }
 
 .empty-state {
@@ -660,22 +671,6 @@ input[type="number"] {
 .modal-button {
   width: 100%;
   margin-top: 24px;
-  border: none;
-  border-radius: 14px;
-  padding: 13px 18px;
-  background: #6f4e2f;
-  color: #fffaf0;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.modal-button:hover {
-  background: #5c3f25;
-}
-
-.modal-button:focus-visible {
-  box-shadow: 0 0 0 3px rgba(168, 132, 79, 0.24);
-  outline: none;
 }
 
 .data-controls {
@@ -783,24 +778,6 @@ input[type="number"] {
 
 .monthly-history-button {
   flex: 0 0 auto;
-  border: 1px solid #cfae83;
-  border-radius: 12px;
-  padding: 10px 14px;
-  background: #7a5635;
-  color: #fffaf0;
-  font: inherit;
-  font-weight: 800;
-  cursor: pointer;
-  transition:
-    background-color 0.18s ease,
-    transform 0.18s ease,
-    box-shadow 0.18s ease;
-}
-
-.monthly-history-button:hover {
-  background: #6b492d;
-  box-shadow: 0 10px 22px rgba(77, 57, 30, 0.12);
-  transform: translateY(-1px);
 }
 
 .monthly-record-list {
@@ -859,6 +836,10 @@ input[type="number"] {
 .monthly-record-metrics strong {
   color: #2f261b;
   font-size: 1.05rem;
+}
+
+.monthly-record-delete-button {
+  flex: 0 0 auto;
 }
 
 @media (max-width: 900px) {
@@ -920,6 +901,14 @@ input[type="number"] {
 
   .monthly-record-metrics {
     grid-template-columns: 1fr;
+  }
+
+  .monthly-record-top {
+    flex-direction: column;
+  }
+
+  .monthly-record-delete-button {
+    align-self: flex-start;
   }
 }
 

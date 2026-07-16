@@ -236,6 +236,20 @@ function App() {
     setMonthlyRecords(updatedRecords);
   }
 
+  function handleDeleteMonthlyRecord(recordId: string) {
+    const shouldDelete = window.confirm(t.monthlyHistory.deleteConfirmMessage);
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    const updatedRecords = monthlyRecords.filter((record) => {
+      return record.id !== recordId;
+    });
+
+    setMonthlyRecords(updatedRecords);
+  }
+
   return (
     <main className="app">
       <Header language={language} t={t} onLanguageChange={setLanguage} />
@@ -282,6 +296,7 @@ function App() {
         language={language}
         t={t.monthlyHistory}
         onSaveCurrentMonth={handleSaveCurrentMonth}
+        onDeleteRecord={handleDeleteMonthlyRecord}
       />
 
       <DataControls t={t.dataControls} onResetData={handleResetData} />

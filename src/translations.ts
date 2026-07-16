@@ -112,6 +112,8 @@ export interface TranslationContent {
     title: string;
     description: string;
     saveButton: string;
+    deleteButton: string;
+    deleteConfirmMessage: string;
     emptyState: string;
     savedMonths: string;
     income: string;
@@ -296,6 +298,9 @@ export const translations: Record<Language, TranslationContent> = {
       description:
         "Save a snapshot of your current month so you can start tracking your financial progress over time.",
       saveButton: "Save this month",
+      deleteButton: "Delete",
+      deleteConfirmMessage:
+        "Are you sure you want to delete this monthly record?",
       emptyState:
         "No monthly records yet. Save this month to start building your history.",
       savedMonths: "Saved months",
@@ -479,6 +484,9 @@ export const translations: Record<Language, TranslationContent> = {
       description:
         "Guarda una foto del mes actual para empezar a seguir tu progreso financiero con el tiempo.",
       saveButton: "Guardar este mes",
+      deleteButton: "Eliminar",
+      deleteConfirmMessage:
+        "¿Seguro que quieres eliminar este registro mensual?",
       emptyState:
         "Todavía no hay registros mensuales. Guarda este mes para empezar a construir tu historial.",
       savedMonths: "Meses guardados",

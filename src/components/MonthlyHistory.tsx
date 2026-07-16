@@ -8,6 +8,7 @@ interface MonthlyHistoryProps {
   language: Language;
   t: TranslationContent["monthlyHistory"];
   onSaveCurrentMonth: () => void;
+  onDeleteRecord: (recordId: string) => void;
 }
 
 function formatMonthKey(monthKey: string, language: Language) {
@@ -39,6 +40,7 @@ function MonthlyHistory({
   language,
   t,
   onSaveCurrentMonth,
+  onDeleteRecord,
 }: MonthlyHistoryProps) {
   return (
     <section className="monthly-history-section">
@@ -76,6 +78,14 @@ function MonthlyHistory({
                         {formatUpdatedDate(record.updatedAt, language)}
                       </p>
                     </div>
+
+                    <button
+                      className="monthly-record-delete-button"
+                      type="button"
+                      onClick={() => onDeleteRecord(record.id)}
+                    >
+                      {t.deleteButton}
+                    </button>
                   </div>
 
                   <div className="monthly-record-metrics">
